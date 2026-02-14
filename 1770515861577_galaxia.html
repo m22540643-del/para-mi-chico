@@ -186,6 +186,7 @@
 </head>
 
 <body>
+  <!-- ESTE CANVAS ES EL QUE HACE LA ANIMACIÓN -->
   <canvas id="stars"></canvas>
   <div class="nebula"></div>
 
@@ -194,7 +195,7 @@
   <div class="center">
     <div class="card">
       <h1>✨ Eres lo más especial para mí, te amo con todo mi corazón ✨</h1>
-      <div class="sub">🌌 Para ti, mi niño bonito</div>
+      <div class="sub">🌌 Para ti</div>
     </div>
   </div>
 
@@ -243,9 +244,9 @@
           y: rand(0, h),
           r: rand(0.6, 2.1) * dpr,
           a: rand(0.15, 1),
-          s: rand(0.12, 0.85) * dpr, // velocidad
-          tw: rand(0.003, 0.018),   // twinkle
-          p: rand(0, Math.PI * 2)   // fase
+          s: rand(0.12, 0.85) * dpr,
+          tw: rand(0.003, 0.018),
+          p: rand(0, Math.PI * 2)
         });
       }
     }
@@ -264,14 +265,12 @@
 
     function drawStars(t){
       for(const st of stars){
-        // Movimiento tipo viaje espacial
         st.y += st.s;
         if(st.y > h + 10){
           st.y = -10;
           st.x = rand(0, w);
         }
 
-        // Twinkle
         const twinkle = 0.55 + 0.45 * Math.sin(t * st.tw + st.p);
         const alpha = Math.max(0.05, Math.min(1, st.a * twinkle));
 
